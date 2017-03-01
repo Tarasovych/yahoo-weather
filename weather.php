@@ -3,6 +3,8 @@
     $api_request = "http://query.yahooapis.com/v1/public/yql?q=" . urlencode($query) . "&format=json";
     $result = file_get_contents($api_request);
     $result_decode = json_decode($result);
+    $description = $result_decode->query->results->channel->item->description;
+	$weather = stristr($description,']]>',true);
     // echo '<pre>' . var_export($result_decode->query->results->channel->item->description, true) . '</pre>';
 ?>    
 
@@ -23,8 +25,8 @@
 	<div id="weather_for">
 		<?php echo 'Weather for ' . $_POST['city']; ?>
 	</div>
-	<div id="weather_city" style="display: none;"">
-		<?php echo '<pre>' . var_export($result_decode->query->results->channel->item->description, true) . '</pre>' ?>
+	<div id="weather_city">
+		<?php echo $weather ?>		
 	</div>
 </body>
 </html>
