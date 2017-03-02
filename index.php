@@ -5,25 +5,21 @@
     $result_decode = json_decode($result);
     $description = $result_decode->query->results->channel->item->description;
 	$weather = stristr($description,']]>',true);
-    // echo '<pre>' . var_export($result_decode->query->results->channel->item->description, true) . '</pre>';
 ?>    
 
 <html>
 <head>
-	<!-- <script type="text/javascript">
-		function showWeather() {
-   		document.getElementById('weather_city').style.display = "block";
-		}
-	</script> -->
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="script.js"></script>
 </head>
 <body>
 	<form id="form" name="cityform" action="" method="post">
 		City<br>
-  		<input type="text" name="city">
+  		<input type="text" name="city" required="true" value="">
   		<input type="submit" value="Submit" onclick="showWeather()">
 	</form>
 	<div id="weather_for">
-		<?php echo 'Weather for ' . $_POST['city']; ?>
+		<?php echo 'Weather for: ' . $_POST['city']; ?>
 	</div>
 	<div id="weather_city">
 		<?php echo $weather ?>		
@@ -31,3 +27,8 @@
 </body>
 </html>
 
+<!-- 
+js
+? приховати закоментоване trim/array_search/frontend
+weather for лишається назва міста 
+-->
